@@ -12,3 +12,17 @@ C:\Users\Egzamin\source\repos\Checker\Checkers-server\obj\Debug\net6.0\refint\Ch
 C:\Users\Egzamin\source\repos\Checker\Checkers-server\obj\Debug\net6.0\Checkers-server.pdb
 C:\Users\Egzamin\source\repos\Checker\Checkers-server\obj\Debug\net6.0\Checkers-server.genruntimeconfig.cache
 C:\Users\Egzamin\source\repos\Checker\Checkers-server\obj\Debug\net6.0\ref\Checkers-server.dll
+D:\projects\Checkers-TCP\Checkers-server\bin\Debug\net6.0\Checkers-server.exe
+D:\projects\Checkers-TCP\Checkers-server\bin\Debug\net6.0\Checkers-server.deps.json
+D:\projects\Checkers-TCP\Checkers-server\bin\Debug\net6.0\Checkers-server.runtimeconfig.json
+D:\projects\Checkers-TCP\Checkers-server\bin\Debug\net6.0\Checkers-server.dll
+D:\projects\Checkers-TCP\Checkers-server\bin\Debug\net6.0\Checkers-server.pdb
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.AssemblyInfoInputs.cache
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.AssemblyInfo.cs
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.csproj.CoreCompileInputs.cache
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.dll
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\refint\Checkers-server.dll
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.pdb
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\Checkers-server.genruntimeconfig.cache
+D:\projects\Checkers-TCP\Checkers-server\obj\Debug\net6.0\ref\Checkers-server.dll

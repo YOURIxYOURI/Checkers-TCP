@@ -7,17 +7,17 @@
         mc:Ignorable="d"
          Title="Checker Game" Width="400" Height="400">
     <Grid>
-        <Label Content="Game Board" FontSize="20" HorizontalAlignment="Center" Height="35" Margin="0,132,0,217"/>
-        <Label x:Name="GameBoardLabel" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" Grid.Row="1"/>
-        <Button x:Name="ConnectButton" Content="Connect to Server" Click="ConnectButton_Click" HorizontalAlignment="Left" Margin="277,33,0,323" Width="113"/>
-        <Label Content="Start row" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,82,0,267"/>
-        <TextBox x:Name="StartRowEntry" HorizontalAlignment="Left" Margin="96,91,0,272" Width="36" Height="21"/>
-        <Label Content="Start col" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,58,0,291"/>
-        <TextBox x:Name="StartColEntry" HorizontalAlignment="Left" Height="21" Margin="96,47,0,307"/>
-        <Label Content="End row" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,28,0,321"/>
-        <TextBox x:Name="EndRowEntry" HorizontalAlignment="Center" Height="21" Margin="0,10,0,0" Grid.Row="5"/>
-        <Label Content="End col" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,-2,0,348"/>
-        <TextBox x:Name="EndColEntry" HorizontalAlignment="Center" Height="21" Margin="0,10,0,0" Grid.Row="6"/>
-        <Button x:Name="MoveButton" Content="Make Move" Click="MoveButton_Click" HorizontalAlignment="Left" Margin="277,3,0,356" Width="113"/>
+        <Label Content="Game Board" FontSize="20" Margin="0,157,0,0" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Width="119"/>
+        <Label x:Name="GameBoardLabel" FontSize="16" Margin="0,197,0,0" Height="177" VerticalAlignment="Top" HorizontalAlignment="Center" Width="118"/>
+        <Button x:Name="ConnectButton" Content="Connect to Server" Click="ConnectButton_Click" Margin="0,0,128,319" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="113"/>
+        <Label Content="Start row" FontSize="18" Height="35" Margin="0,0,304,230" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <TextBox x:Name="StartRowEntry" Margin="0,0,263,235" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="36"/>
+        <Label Content="Start col" FontSize="18" Height="35" Margin="0,0,310,254" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+        <TextBox x:Name="StartColEntry" Height="21" Margin="0,0,263,261" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="36"/>
+        <Label Content="End row" FontSize="18" Height="35" Margin="0,0,310,284" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+        <TextBox x:Name="EndRowEntry" Margin="0,0,263,291" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="36"/>
+        <Label Content="End col" FontSize="18" Height="35" Margin="0,0,317,312" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="68"/>
+        <TextBox x:Name="EndColEntry" Height="21" Margin="0,0,263,323" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="36"/>
+        <Button x:Name="MoveButton" Content="Make Move" Click="MoveButton_Click" Margin="0,0,10,319" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="113"/>
     </Grid>
 </Window>

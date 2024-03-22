@@ -59,10 +59,6 @@ namespace Checkers_server
             Console.WriteLine("Game started.");
             CheckerGame game = new CheckerGame();
 
-            byte[] startMessage = Encoding.ASCII.GetBytes("Game starting...\n");
-            player1Stream.Write(startMessage, 0, startMessage.Length);
-            player2Stream.Write(startMessage, 0, startMessage.Length);
-
             string updatedBoard = game.GetBoardState();
             byte[] response = Encoding.ASCII.GetBytes(updatedBoard);
             player1Stream.Write(response, 0, response.Length);

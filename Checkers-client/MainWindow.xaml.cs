@@ -34,7 +34,7 @@ namespace Checkers_client
             try
             {
                 client = new TcpClient();
-                await client.ConnectAsync("192.168.0.100", 8888); // Adres IP i port serwera
+                await client.ConnectAsync("127.0.0.1", 8888); // Adres IP i port serwera
 
                 stream = client.GetStream();
 
@@ -92,3 +92,4 @@ namespace Checkers_client
             }
         }
     }
+}
