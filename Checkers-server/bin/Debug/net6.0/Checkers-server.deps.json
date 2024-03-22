@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Checkers-server/1.0.0": {
+        "runtime": {
+          "Checkers-server.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Checkers-server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
