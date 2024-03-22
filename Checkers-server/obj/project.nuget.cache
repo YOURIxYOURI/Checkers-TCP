@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q7aWPpQM33DoWBE/Mq0ljpD5MRJBLMPmxKqrJIm13/Y2lDQgYOB/lPtUhJByJat877BFuk8pDvEvnAKtitIRWw==",
+  "dgSpecHash": "gqtQCONBPp47B3IS0gHsPYH4qQySpBXYi8mbY5k3/LpB2r6a+mIq/1KfQne/qtdAwu9cSv/5X3GPXl8TPJFuPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Egzamin\\source\\repos\\Checker\\Checkers-server\\Checkers-server.csproj",
+  "projectFilePath": "D:\\projects\\Checkers-TCP\\Checkers-server\\Checkers-server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

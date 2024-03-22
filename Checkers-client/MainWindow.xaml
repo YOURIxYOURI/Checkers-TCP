@@ -1,0 +1,23 @@
+﻿<Window x:Class="Checkers_client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Checkers_client"
+        mc:Ignorable="d"
+         Title="Checker Game" Width="400" Height="400">
+    <Grid>
+        <Label Content="Game Board" FontSize="20" HorizontalAlignment="Center" Height="35" Margin="0,132,0,217"/>
+        <Label x:Name="GameBoardLabel" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" Grid.Row="1"/>
+        <Button x:Name="ConnectButton" Content="Connect to Server" Click="ConnectButton_Click" HorizontalAlignment="Left" Margin="277,33,0,323" Width="113"/>
+        <Label Content="Start row" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,82,0,267"/>
+        <TextBox x:Name="StartRowEntry" HorizontalAlignment="Left" Margin="96,91,0,272" Width="36" Height="21"/>
+        <Label Content="Start col" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,58,0,291"/>
+        <TextBox x:Name="StartColEntry" HorizontalAlignment="Left" Height="21" Margin="96,47,0,307"/>
+        <Label Content="End row" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,28,0,321"/>
+        <TextBox x:Name="EndRowEntry" HorizontalAlignment="Center" Height="21" Margin="0,10,0,0" Grid.Row="5"/>
+        <Label Content="End col" FontSize="18" Height="35" HorizontalAlignment="Left" Margin="10,-2,0,348"/>
+        <TextBox x:Name="EndColEntry" HorizontalAlignment="Center" Height="21" Margin="0,10,0,0" Grid.Row="6"/>
+        <Button x:Name="MoveButton" Content="Make Move" Click="MoveButton_Click" HorizontalAlignment="Left" Margin="277,3,0,356" Width="113"/>
+    </Grid>
+</Window>
