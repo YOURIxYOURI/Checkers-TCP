@@ -53,10 +53,10 @@ namespace Checkers_server
                 return false; 
             }
 
-            int startCol = move[0] - 1;
-            int startRow = move[1] - 1;
-            int endCol = move[2] - 1;
-            int endRow = move[3] - 1;
+            int startRow = (move[0] - '0') - 1;
+            int startCol = (move[1] - '0') - 1;
+            int endRow = (move[2] - '0') - 1;
+            int endCol = (move[3] - '0') - 1;
             if (IsValidMove(startRow, startCol, endRow, endCol, player))
             {
                 board[endRow, endCol] = player;
@@ -76,15 +76,15 @@ namespace Checkers_server
         private bool IsValidMove(int startRow, int startCol, int endRow, int endCol, char player)
         {
 
-            if (startCol < 1 || startCol > 8||
-                startRow < 1 || startRow > 8 ||
-                endCol < 1 || endCol > 8||
-                endRow < 1 || endRow > 8)
+            if (startCol < 0 || startCol > 7||
+                startRow < 0 || startRow > 7 ||
+                endCol < 0 || endCol > 7||
+                endRow < 0 || endRow > 7)
             {
                 return false; 
             }
 
-            if (board[startRow, startCol] != ' ' || board[startRow, startCol] != player)
+            if (board[startRow, startCol] == ' ' || board[startRow, startCol] != player)
             {
                 return false;
             }
@@ -92,14 +92,13 @@ namespace Checkers_server
             {
                 if (board[endRow, endCol] == ' ')
                 {
-                    
+              
                 }
                 else
                 {
                     return false;
                 }
             }
-
             return true; 
         }
 

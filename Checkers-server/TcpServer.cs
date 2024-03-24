@@ -59,13 +59,12 @@ namespace Checkers_server
             Console.WriteLine("Game started.");
             CheckerGame game = new CheckerGame();
 
-            string updatedBoard = game.GetBoardState();
-            byte[] response = Encoding.ASCII.GetBytes(updatedBoard);
-            player1Stream.Write(response, 0, response.Length);
-            player2Stream.Write(response, 0, response.Length);
-
             while (true)
             {
+                string updatedBoard = game.GetBoardState();
+                byte[] response = Encoding.ASCII.GetBytes(updatedBoard);
+                player1Stream.Write(response, 0, response.Length);
+                player2Stream.Write(response, 0, response.Length);
                 if (game.IsPlayer1Turn())
                 {
                     string data = ReadMove(player1Stream);

@@ -40,13 +40,7 @@ namespace Checkers_client
 
                 MessageBox.Show("Connected to the server.", "Success", MessageBoxButton.OK);
                 ConnectButton.IsEnabled = false;
-
-                // Odbierz początkową wiadomość (informację o rozpoczęciu gry) od serwera
-                byte[] startMessageBuffer = new byte[1024];
-                int bytesRead = await stream.ReadAsync(startMessageBuffer, 0, startMessageBuffer.Length);
-                string startMessage = Encoding.ASCII.GetString(startMessageBuffer, 0, bytesRead);
-                GameBoardLabel.Content = startMessage;
-
+                
                 await ReceiveData();
             }
             catch (Exception ex)
@@ -57,6 +51,7 @@ namespace Checkers_client
 
         private async Task ReceiveData()
         {
+
             try
             {
                 byte[] buffer = new byte[1024];
@@ -67,8 +62,7 @@ namespace Checkers_client
                     string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
                     Dispatcher.Invoke(() =>
                     {
-                        // Update UI with received data (game board)
-                        GameBoardLabel.Content = data;
+                       GenerateGameBoard(data);
                     });
                 }
             }
@@ -85,11 +79,78 @@ namespace Checkers_client
                 string moveData = $"{StartRowEntry.Text}{StartColEntry.Text}{EndRowEntry.Text}{EndColEntry.Text}";
                 byte[] buffer = Encoding.ASCII.GetBytes(moveData);
                 await stream.WriteAsync(buffer, 0, buffer.Length);
+                await ReceiveData();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void GenerateGameBoard(string boardString)
+        {
+            // Podziel ciąg znaków planszy na wiersze
+            string[] rowsData = boardString.Split("\r\n");
+
+            int cols = rowsData[0].Length;
+
+            // Tworzymy siatkę (Grid) do umieszczenia pól planszy
+            Grid grid = new Grid();
+            grid.Margin = new Thickness(10);
+            grid.HorizontalAlignment = HorizontalAlignment.Center;
+            grid.VerticalAlignment = VerticalAlignment.Center;
+
+            // Dodajemy odpowiednią liczbę wierszy i kolumn do siatki
+            for (int i = 0; i < 8; i++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+            }
+
+            for (int j = 0; j < cols; j++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+            }
+
+            // Wypełniamy siatkę planszą na podstawie stringa
+            for (int i = 0; i < 8; i++)
+            {
+                string rowData = rowsData[i];
+
+                for (int j = 0; j < cols; j++)
+                {
+                    char fieldValue = j < rowData.Length ? rowData[j] : ' '; // Ustaw spację dla brakujących pól
+
+                    Border border = new Border();
+                    border.BorderBrush = Brushes.Black;
+                    border.BorderThickness = new Thickness(1);
+
+                    Label cellLabel = new Label();
+                    cellLabel.Content = fieldValue == ' ' ? " " : fieldValue.ToString();
+                    cellLabel.FontSize = 16;
+                    cellLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                    cellLabel.VerticalAlignment = VerticalAlignment.Center;
+
+                    // Ustawiamy tło dla pola w zależności od jego pozycji na planszy
+                    if ((i + j) % 2 == 0)
+                    {
+                        border.Background = Brushes.LightGray;
+                    }
+                    else
+                    {
+                        border.Background = Brushes.White;
+                    }
+
+                    border.Child = cellLabel;
+                    Grid.SetRow(border, i);
+                    Grid.SetColumn(border, j);
+                    grid.Children.Add(border);
+                }
+            }
+
+            // Dodajemy siatkę do okna lub innego kontenera w interfejsie WPF
+            // Zakładając, że istnieje StackPanel o nazwie gameBoardPanel
+            gameBoardPanel.Children.Clear(); // Wyczyszczenie istniejących elementów
+            gameBoardPanel.Children.Add(grid);
+        }
+
     }
 }
