@@ -41,6 +41,8 @@ namespace Checkers_client
                 MessageBox.Show("Connected to the server.", "Success", MessageBoxButton.OK);
                 ConnectButton.IsEnabled = false;
 
+                //await ReceivePlayerInfo();
+
                 await ReceiveData();
             }
             catch (Exception ex)
@@ -48,6 +50,24 @@ namespace Checkers_client
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        //private async Task ReceivePlayerInfo()
+        //{
+        //    try
+        //    {
+        //        byte[] playerInfoBuffer = new byte[1024];
+        //        int playerInfoBytesRead = await stream.ReadAsync(playerInfoBuffer, 0, playerInfoBuffer.Length);
+        //        string playerInfoMessage = Encoding.ASCII.GetString(playerInfoBuffer, 0, playerInfoBytesRead);
+        //        Dispatcher.Invoke(() =>
+        //        {
+        //            playerInfo.Content = playerInfoMessage;
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
+
 
         private async Task ReceiveData()
         {
@@ -89,18 +109,16 @@ namespace Checkers_client
         private void GenerateGameBoard(string boardString)
         {
             isMovingPieceSelected = false;
-            // Podziel ciąg znaków planszy na wiersze
+
             string[] rowsData = boardString.Split("\r\n");
 
             int cols = rowsData[0].Length;
 
-            // Tworzymy siatkę (Grid) do umieszczenia pól planszy
             Grid grid = new Grid();
             grid.Margin = new Thickness(10);
             grid.HorizontalAlignment = HorizontalAlignment.Center;
             grid.VerticalAlignment = VerticalAlignment.Center;
 
-            // Dodajemy odpowiednią liczbę wierszy i kolumn do siatki
             for (int i = 0; i < 8; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
@@ -111,14 +129,13 @@ namespace Checkers_client
                 grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
             }
 
-            // Wypełniamy siatkę planszą na podstawie stringa
             for (int i = 0; i < 8; i++)
             {
                 string rowData = rowsData[i];
 
                 for (int j = 0; j < cols; j++)
                 {
-                    char fieldValue = j < rowData.Length ? rowData[j] : ' '; // Ustaw spację dla brakujących pól
+                    char fieldValue = j < rowData.Length ? rowData[j] : ' '; 
 
                     Border border = new Border();
                     border.BorderBrush = Brushes.Black;
@@ -129,10 +146,9 @@ namespace Checkers_client
                     cellLabel.FontSize = 16;
                     cellLabel.HorizontalAlignment = HorizontalAlignment.Center;
                     cellLabel.VerticalAlignment = VerticalAlignment.Center;
-                    cellLabel.MouseDown += CellLabel_MouseDown; // Dodajemy zdarzenie kliknięcia
+                    cellLabel.MouseDown += CellLabel_MouseDown; 
                     cellLabel.Tag = new Tuple<int, int>(i+1, j+1);
 
-                    // Ustawiamy tło dla pola w zależności od jego pozycji na planszy
                     if ((i + j) % 2 == 0)
                     {
                         border.Background = Brushes.LightGray;
@@ -149,9 +165,7 @@ namespace Checkers_client
                 }
             }
 
-            // Dodajemy siatkę do okna lub innego kontenera w interfejsie WPF
-            // Zakładając, że istnieje StackPanel o nazwie gameBoardPanel
-            gameBoardPanel.Children.Clear(); // Wyczyszczenie istniejących elementów
+            gameBoardPanel.Children.Clear(); 
             gameBoardPanel.Children.Add(grid);
         }
 
@@ -167,20 +181,17 @@ namespace Checkers_client
                 var tag = cellLabel.Tag as Tuple<int, int>;
                 if (!isMovingPieceSelected)
                 {
-                    // Jeśli jeszcze nie wybrano pionka do ruszenia
                     if (!string.IsNullOrEmpty(cellLabel.Content.ToString().Trim()))
                     {
-                        // Zaznacz pionka
                         isMovingPieceSelected = true;
                         startRow = tag.Item1;
                         startCol = tag.Item2;
                         previousColor = cellLabel.Background;
-                        cellLabel.Background = Brushes.LightGreen; // Zaznacz wybrany pionek
+                        cellLabel.Background = Brushes.LightGreen; 
                     }
                 }
                 else
                 {
-                    // Jeśli już wybrano pionka, wybierz pole, na które chcesz się ruszyć
                     int endRow = tag.Item1;
                     int endCol = tag.Item2;
                     isMovingPieceSelected = false;

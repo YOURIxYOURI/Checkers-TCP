@@ -59,6 +59,15 @@ namespace Checkers_server
             Console.WriteLine("Game started.");
             CheckerGame game = new CheckerGame();
 
+            //string player1Message = "You are player 1.";
+            //string player2Message = "You are player 2.";
+
+            //byte[] player1MessageBytes = Encoding.ASCII.GetBytes(player1Message);
+            //byte[] player2MessageBytes = Encoding.ASCII.GetBytes(player2Message);
+
+            //player1Stream.Write(player1MessageBytes, 0, player1MessageBytes.Length);
+            //player2Stream.Write(player2MessageBytes, 0, player2MessageBytes.Length);
+
             while (true)
             {
                 string updatedBoard = game.GetBoardState();
