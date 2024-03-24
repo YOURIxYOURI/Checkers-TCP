@@ -40,7 +40,7 @@ namespace Checkers_client
 
                 MessageBox.Show("Connected to the server.", "Success", MessageBoxButton.OK);
                 ConnectButton.IsEnabled = false;
-                
+
                 await ReceiveData();
             }
             catch (Exception ex)
@@ -72,11 +72,11 @@ namespace Checkers_client
             }
         }
 
-        private async void MoveButton_Click(object sender, RoutedEventArgs e)
+        private async void MakeMove(int startRow, int startCol, int endRow, int endCol)
         {
             try
             {
-                string moveData = $"{StartRowEntry.Text}{StartColEntry.Text}{EndRowEntry.Text}{EndColEntry.Text}";
+                string moveData = $"{startRow}{startCol}{endRow}{endCol}";
                 byte[] buffer = Encoding.ASCII.GetBytes(moveData);
                 await stream.WriteAsync(buffer, 0, buffer.Length);
                 await ReceiveData();
@@ -88,6 +88,7 @@ namespace Checkers_client
         }
         private void GenerateGameBoard(string boardString)
         {
+            isMovingPieceSelected = false;
             // Podziel ciąg znaków planszy na wiersze
             string[] rowsData = boardString.Split("\r\n");
 
@@ -124,10 +125,12 @@ namespace Checkers_client
                     border.BorderThickness = new Thickness(1);
 
                     Label cellLabel = new Label();
-                    cellLabel.Content = fieldValue == ' ' ? " " : fieldValue.ToString();
+                    cellLabel.Content = fieldValue == ' ' ? "" : fieldValue.ToString();
                     cellLabel.FontSize = 16;
                     cellLabel.HorizontalAlignment = HorizontalAlignment.Center;
                     cellLabel.VerticalAlignment = VerticalAlignment.Center;
+                    cellLabel.MouseDown += CellLabel_MouseDown; // Dodajemy zdarzenie kliknięcia
+                    cellLabel.Tag = new Tuple<int, int>(i+1, j+1);
 
                     // Ustawiamy tło dla pola w zależności od jego pozycji na planszy
                     if ((i + j) % 2 == 0)
@@ -152,5 +155,47 @@ namespace Checkers_client
             gameBoardPanel.Children.Add(grid);
         }
 
-    }
+        private bool isMovingPieceSelected = false;
+        private int startRow, startCol;
+        private Brush previousColor;
+
+        private void CellLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Label cellLabel = sender as Label;
+            if (cellLabel != null)
+            {
+                var tag = cellLabel.Tag as Tuple<int, int>;
+                if (!isMovingPieceSelected)
+                {
+                    // Jeśli jeszcze nie wybrano pionka do ruszenia
+                    if (!string.IsNullOrEmpty(cellLabel.Content.ToString().Trim()))
+                    {
+                        // Zaznacz pionka
+                        isMovingPieceSelected = true;
+                        startRow = tag.Item1;
+                        startCol = tag.Item2;
+                        previousColor = cellLabel.Background;
+                        cellLabel.Background = Brushes.LightGreen; // Zaznacz wybrany pionek
+                    }
+                }
+                else
+                {
+                    // Jeśli już wybrano pionka, wybierz pole, na które chcesz się ruszyć
+                    int endRow = tag.Item1;
+                    int endCol = tag.Item2;
+                    isMovingPieceSelected = false;
+                    cellLabel.Background = previousColor;
+
+                    if (endRow == startRow && endCol == startCol)
+                    {
+                        
+                    }
+                    else
+                    {
+                        MakeMove(startRow, startCol, endRow, endCol);
+                    }
+                }
+            }
+        }
+     }
 }

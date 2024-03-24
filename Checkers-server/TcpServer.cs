@@ -25,7 +25,7 @@ namespace Checkers_server
             listener = new TcpListener(address, port);
         }
 
-        public void Start()
+        public async void Start()
         {
             listener.Start();
             Console.WriteLine("Server started. Waiting for connections...");
